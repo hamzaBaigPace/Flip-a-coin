@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Toss</title>
+    <style>
+        body{
+            background: rgb(2,0,36);
+            background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(131,4,185,1) 28%, rgba(56,9,121,1) 35%, rgba(179,101,186,1) 61%, rgba(137,8,93,1) 85%, rgba(0,212,255,1) 100%);
+            color:#fff;
+            font-family: sans-serif;
+        }
+        .container{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        .coin-img{
+            width: 200px;
+            height: 200px;
+        }
+        .toss-btn{
+            background: rgb(131,4,185);
+            border: 1px solid #fff;
+            color:#fff;
+            border-radius: 5px;
+            padding: 1.5rem 4rem;
+            font-weight: bold;
+            font-size: 1rem;
+            margin-top: 1em;
+        }
+        .toss-btn:hover{
+            cursor: pointer;
+        }
+        .loader {
+            border: 16px solid rgb(131,4,185); /* Light grey */
+            border-top: 16px solid rgb(179,101,186); /* Blue */
+            border-radius: 50%;
+            width: 75px;
+            height: 75px;
+            animation: spin 2s linear infinite;
+        }
+
+        @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>FLIP A COIN</h1>
+        <div class="loader"></div>
+        <h2 class="coin"></h2>
+        <img src="" alt="" class="coin-img">
+        <button class="toss-btn">Flip Coin</button>
+    </div>
+    <script
+        src="https://code.jquery.com/jquery-3.6.0.js"
+        integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+        crossorigin="anonymous">
+    </script>
+    <script>
+        choicesStr=['HEAD','TAIL'];
+        choices=['head.png','tail.png'];
+
+        $('.coin-img').hide();
+        $('.loader').hide();
+
+        $('.toss-btn').click(()=>{
+            $('.loader').show();
+            $('.coin-img').hide();
+            $('.coin').hide();
+            setTimeout(function(){
+                $('.loader').hide();  
+                choice=Math.floor(Math.random() * 2);
+                $('.coin').html(choicesStr[choice]);
+                $('.coin').show();
+                $('.coin-img').show();
+                $('.coin-img').attr('src',choices[choice]);
+             }, 1000);
+            
+        });
+    </script>
+</body>
+</html>
